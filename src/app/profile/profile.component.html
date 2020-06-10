@@ -1,0 +1,99 @@
+<form action="" class="search-form">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findprofile()">
+    </div>
+</form>
+
+<div *ngIf= "profile">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           <h1> <b>{{profile.name}}</b><small>({{profile.login}})</small>, {{profile.location}} 
+          
+            <span class= "form-group" style="float: right; margin: auto;" >
+              <b>  <input type="text" class="form-control" placeholder="search by Repository" style="width:400px; height: 40px; font-weight: 300; font-size:medium; " 
+                [(ngModel)] = "searchTerm" /> </b>
+    
+            </span>
+        </h1>
+              
+           
+
+        </div>
+
+        
+       
+        
+        <br><br>
+        
+
+        <div class="panel-body">
+            <div class= "row">
+                <div class="col-sm-2">
+                    <img src="{{profile.avatar_url}}" class= "img-circle img-responsive" alt="Profile Image">
+                    
+                    <br>
+
+                </div>
+
+                <div class="col-sm-5 ">
+                    <ul class= "list-group">
+                     <li class="list-group=item" *ngIf="profile.bio"><h3>Bio:-{{profile.bio}}</h3></li>
+                     <li class="list-group=item" *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank"><h3>Blogs:-{{profile.blog}}</h3></a></li>
+                        <li class="list-group=item" *ngIf="profile.email"><a href="{{profile.email}}" target="_blank"><h3>Email:-{{profile.email}}</h3></a></li>  
+                 </ul>
+                 </div>
+
+                 <div class= "col-sm-4">
+                    
+
+                    <div>
+                        <h2>
+                        <p>
+                          <span class= "label label-default">Followers {{profile.followers}}  </span>
+                            <span class= "label label-primary">Following {{profile.following}}  </span>
+                            <span class= "label label-success">Public_Repos {{profile.public_repos}}  </span>
+                           <!-- <span class= "label label-info">Public_Gists {{profile.public_gists}}  </span>
+                           -->
+                        </p>
+                        </h2>
+                        <p>
+                            <a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm"><h1>View Profile on Github</h1></a>
+                        </p>
+
+                    <div class= "panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Repositories</h3>
+
+                        </div>
+                            <div class="panel-body" *ngFor="let repo of repos | paginate: {id: 'listing_pagination' ,
+                             itemsPerPage:10,
+                            currentPage: page,
+                            totalItems: totalRecords} | repofilter:searchTerm" >
+                               
+                                <h3>
+                                <p class="clearfix">
+                                    {{repo.name}} <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm btn-warning pull-right" >  <h4>View this project on github</h4>  </a>
+                                  
+                            </p>
+                            <p>  {{repo.description}} </p>
+                            </h3>
+                            </div>
+
+                            <div>
+                                <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                            </div>
+                    </div>
+
+                    </div>
+        
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
