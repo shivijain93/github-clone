@@ -1,9 +1,9 @@
 <form action="" class="search-form">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findprofile()">
+        <input type="text" class="form-control" placeholder="Search git users with username" style=" height: 30px; font-weight: 300; font-size:medium; " [(ngModel)]="username" name="username" (keyup)="findprofile()">
     </div>
 </form>
-
+<br>
 <div *ngIf= "profile">
     <div class="panel panel-default">
         <div class="panel-heading">
