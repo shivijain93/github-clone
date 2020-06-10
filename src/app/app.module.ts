@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import {ProfileService} from './profile.service';
-import {RepoFilterPipe} from '../../../../../../Users/Shivani Jain/Desktop/get-github-repo/src/app/profile/repofilter.pipe';
+import {RepoFilterPipe} from './profile/repofilter.pipe';
 import {NgxPaginationModule} from'ngx-pagination';
 import { from } from 'rxjs';
 
